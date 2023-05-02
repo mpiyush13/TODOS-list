@@ -1,24 +1,53 @@
 import logo from './logo.svg';
 import './App.css';
+import Header from './mycomponent/header';
+import {Footer} from "./mycomponent/Footer";
+import {Addtodo} from "./mycomponent/Addtodo";
+import {Todos} from './mycomponent/Todos';
+import React, { useState } from 'react';
+
+
+
 
 function App() {
+  const [id, setId] = useState("");
+    const [desc, setDesc] = useState("");
+  const onDelete=(todo)=>{
+    console.log("I am Delete ",todo);
+    setTodos(list.filter((e)=>{
+      return e!=todo
+    }));
+  }
+  const Addtodo1=(id,desc)=>{
+     console.log("i am adding this part ",id,desc);
+     const temp={
+      id:id,
+      desc:desc
+     }
+     setTodos([...list,temp])
+
+  }
+  const [list, setTodos] = useState(
+  [{id:1,
+  desc:"hey i am piyush 1"},
+{
+  id:2,
+  desc:"hey i am piyush 2"
+},
+{
+  id:3,
+  desc:"hey i am piyush 3"
+}
+]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+   <Header title="Piyush" searchbar={false}/>
+   <Addtodo Addtodo2={Addtodo1}/>
+   <Todos list={list} onDelete1={onDelete}/>
+   <Footer/>
+   
+
+   </>
   );
 }
 
